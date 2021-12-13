@@ -20,6 +20,8 @@ jobs:
     - name: get jd_wstool
       run: |
            wget https://github.com/yqchilde/JDMemberCloseAccount/releases/download/v1.0.3/jd_wstool-linux-amd64.tar.gz
+           pwd
+           ls
            tar -zxvf jd_wstool-linux-amd64.tar.gz
            pwd
            ls
