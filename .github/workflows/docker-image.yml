@@ -14,6 +14,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    steps:
+    - uses: actions/checkout@v2
+
     - name: get jd_wstool
       run: |
            wget https://github.com/yqchilde/JDMemberCloseAccount/releases/download/v1.0.3/jd_wstool-linux-amd64.tar.gz
@@ -35,8 +38,6 @@ jobs:
            pwd
            ls
 
-    steps:
-    - uses: actions/checkout@v2
     - name: Build the Docker image
       run: |
            pwd
