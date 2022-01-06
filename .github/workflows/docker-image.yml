@@ -37,6 +37,19 @@ jobs:
 
     - name: Build the Docker image
       run: |
-           docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/jdmc:amd64
+           docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/jdmc
            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-           docker push ${{ secrets.DOCKER_USERNAME }}/jdmc:amd64
+           docker push ${{ secrets.DOCKER_USERNAME }}/jdmc
+           docker build . --file Dockerfile2 --tag ${{ secrets.DOCKER_USERNAME }}/jdmc:tool
+           docker push ${{ secrets.DOCKER_USERNAME }}/jdmc:tool
+
+  del_runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: 1
+          keep_minimum_runs: 10

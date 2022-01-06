@@ -1,0 +1,9 @@
+FROM alpine:latest
+
+ENV TZ=Asia/Shanghai
+ENV LANG C.UTF-8
+WORKDIR /code
+COPY ./jd_wstool ./jd_wstool
+RUN  ls && apk add --no-cache tzdata && cp /usr/share/zoneinfo/$TZ /etc/localtime
+
+CMD [ "/code/jd_wstool"]
