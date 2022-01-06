@@ -35,11 +35,14 @@ jobs:
            mv chromedriver drivers/chromedriver
            rm chromedriver_linux64.zip
 
-    - name: Build the Docker image
+    - name: Build the Docker jdmc
       run: |
            docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/jdmc
            docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
            docker push ${{ secrets.DOCKER_USERNAME }}/jdmc
+
+    - name: Build the Docker tool
+      run: |
            docker build . --file Dockerfile2 --tag ${{ secrets.DOCKER_USERNAME }}/jdmc:tool
            docker push ${{ secrets.DOCKER_USERNAME }}/jdmc:tool
 
